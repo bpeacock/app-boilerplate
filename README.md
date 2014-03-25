@@ -1,8 +1,8 @@
-New Library
-===========
+New App
+=======
 
-Usage
------
+Installation
+------------
 
 Installation `npm install`
 
