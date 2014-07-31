@@ -10,10 +10,10 @@
       "url": ""
     },
     "dependencies": {
-        
+        "subview": "0.2.x",
+        "onClick": "0.1.0"
     },
     "devDependencies": {
-        "subview":              "0.2.x",
         "grunt":                "~0.4.2",
         "grunt-contrib-watch":  "0.5.x",
         "grunt-browserify":     "1.3.x",
