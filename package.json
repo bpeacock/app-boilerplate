@@ -1,7 +1,7 @@
 {
     "name":         "",
     "description":  "",
-    "version":      "",
+    "version":      "0.0.0",
     "author":       "",
     "main":         "src/main.js",
     "private":      true,
