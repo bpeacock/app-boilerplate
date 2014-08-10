@@ -1,19 +1,26 @@
+var browserifyDefaultOptions = {
+    transform: ['grunt-less-browserify', 'browserify-handlebars']
+};
+
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         browserify: {
+            phonegap: {
+                files: {
+                    'platforms/PhoneGap/www/js/index.js': ['platforms/PhoneGap/index.js']
+                },
+                options: browserifyDefaultOptions
+            },
             dist: {
                 files: {
-                    'build/app.js':          ['src/main.js']
+                    'builds/Web/app.js': ['views/main.js']
                 },
-                options: {
-                    //standalone: '',
-                    transform: ['grunt-less-browserify']
-                }
+                options: browserifyDefaultOptions
             },
             test: {
                 files: {
-                    'test/build.js':        ['test/test.js']
+                    'test/build/test.js': ['test/test.js']
                 },
                 options: {
                     transform: ['grunt-less-browserify'],
@@ -21,8 +28,11 @@ module.exports = function(grunt) {
                 }
             }
         },
+        lessBrowserify: {
+            imports: ['node_modules/helpers.less/helpers.less']
+        },
         watch: {
-            files: [ "src/**/*"],
+            files: [ "views/**/*", "models/**/*" ],
             tasks: [ 'browserify:dist' ]
         },
         jshint: {
@@ -32,12 +42,12 @@ module.exports = function(grunt) {
                 eqnull: true,
                 browser: true
             },
-            uses_defaults: ['src/**/*.js']
+            uses_defaults: [ 'views/**/*.js', 'models/**/*.js' ]
         },
         uglify: {
             dist: {
                 files: {
-                    'build/app.min.js': ['build/app.js']
+                    'builds/Web/app.min.js': ['builds/Web/app.js']
                 },
                 options: {
                     sourceMap: true
@@ -46,6 +56,20 @@ module.exports = function(grunt) {
         },
         qunit: {
             files: ['test/index.html']
+        },
+        shell: {
+            phonegap: {
+                command: "sudo sh platforms/PhoneGap/build.sh",
+                options: {
+                    stdout: true
+                }
+            },
+            web: {
+                command: "sudo sh platforms/Web/build.sh",
+                options: {
+                    stdout: true
+                }
+            }
         }
     });
 
@@ -54,6 +78,18 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-shell');
+
+    grunt.registerTask('phonegap', [
+        'browserify:phonegap',
+        'shell:phonegap'
+    ]);
+
+    grunt.registerTask('web', [
+        'browserify:dist',
+        'uglify',
+        'shell:web'
+    ]);
 
     grunt.registerTask('test', [
         'browserify:test',
@@ -61,10 +97,10 @@ module.exports = function(grunt) {
         'jshint'
     ]);
 
-    grunt.registerTask('build', [
+    grunt.registerTask('default', [
         'test',
-        'browserify:dist',
-        'uglify'
+        'web',
+        'phonegap'
     ]);
 };
 
