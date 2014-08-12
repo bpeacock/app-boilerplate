@@ -10,7 +10,8 @@
     "url": ""
   },
   "dependencies": {
-    "subview": "0.2.x"
+    "subview": "0.2.x",
+    "normalize.css": "~3.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
