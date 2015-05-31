@@ -1,5 +1,5 @@
-Portfolio Site
-==============
+App Boilerplate
+===============
 
 Build: `gulp`
 
