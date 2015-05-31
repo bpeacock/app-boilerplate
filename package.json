@@ -1,0 +1,36 @@
+{
+  "name": "Portfolio",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "postinstall": "node node_modules/.bin/gulp default;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bpeacock/bpeacock.github.io.git"
+  },
+  "author": "Brian Peacock",
+  "bugs": {
+    "url": "https://github.com/bpeacock/bpeacock.github.io/issues"
+  },
+  "homepage": "https://github.com/bpeacock/bpeacock.github.io",
+  "private": true,
+  "dependencies": {
+    "browserify": "^7.1.0",
+    "gulp": "^3.8.11",
+    "gulp-concat-util": "^0.5.2",
+    "gulp-jade": "^1.0.1",
+    "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.5",
+    "gulp-watch": "^4.2.4",
+    "helpers.less": "git://github.com/bpeacock/helpers.less.git",
+    "jade": "^1.10.0",
+    "jadeify": "^4.3.0",
+    "lessify": "^1.0.1",
+    "subview": "^0.2.4",
+    "underscore": "^1.8.3",
+    "vinyl-transform": "^1.0.0"
+  }
+}
