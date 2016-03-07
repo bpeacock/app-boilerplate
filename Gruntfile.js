@@ -69,6 +69,12 @@ module.exports = function(grunt) {
                 options: {
                     stdout: true
                 }
+            },
+            "install-phonegap": {
+                command: "sudo sh platforms/PhoneGap/install.sh",
+                options: {
+                    stdout: true
+                }
             }
         }
     });
@@ -79,6 +85,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-shell');
+
+    grunt.registerTask('install-phonegap', [
+        'shell:install-phonegap'
+    ]);
 
     grunt.registerTask('phonegap', [
         'browserify:phonegap',
@@ -100,7 +110,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'test',
         'web',
+        'install-phonegap',
         'phonegap'
     ]);
 };
-
