@@ -56,7 +56,7 @@ echo "\n${HC}Installing PhoneGap Plugins...${NC}"
 
 echo "\n${HC}Running PhoneGap...${NC}"
 
-killall "iPhone Simulator"
+killall "Simulator"
 phonegap run ios
 
 
